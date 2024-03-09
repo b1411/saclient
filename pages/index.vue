@@ -106,7 +106,7 @@
         <FormBlock title="Загрузите свое фото" class="mt-8">
 
             <template v-slot:inputs>
-                <input @change="setUserImage" type="file" required accept="image/*" name="photo"
+                <input @change="setUserImage" type="file" required accept="image/png, image/jpg, image/jpeg" name="photo"
                     class="file-input file-input-bordered file-input-primary" />
             </template>
         </FormBlock>
