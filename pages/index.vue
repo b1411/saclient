@@ -119,7 +119,10 @@
             </template>
         </FormBlock>
         <div class="w-full my-8 flex flex-row justify-center">
-            <button type="submit" class="btn btn-primary px-20">Отправить</button>
+            <button type="submit" class="btn btn-primary px-20" :class="{'btn-disabled': isPending}" :disabled="isPending">
+                <span v-if="isPending">Отправка...</span>
+                <span v-else>Отправить</span>
+            </button>
         </div>
         <img v-if="processedImage" :src="pathProcessedImage" alt="processed image" class="w-1/2 mx-auto" />
     </form>
@@ -140,6 +143,8 @@ let userImage = ref(null)
 let campus = ref('')
 let rembg = ref(false);
 let processedImage = ref(null);
+
+let isPending = ref(false);
 
 let pathProcessedImage = computed(() => (`https://rakhmat.ninja/${processedImage.value}`))
 
@@ -191,10 +196,12 @@ async function submitForm() {
 
     let res = null;
     try {
+        isPending.value = true;
         res = await fetch('https://rakhmat.ninja/user', {
             method: "post",
             body: formData,
         });
+        isPending.value = false;
         let data = await res.json();
         if (res.status === 200) {
             processedImage.value = data.filepath
