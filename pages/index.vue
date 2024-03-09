@@ -141,7 +141,7 @@ let campus = ref('')
 let rembg = ref(false);
 let processedImage = ref(null);
 
-let pathProcessedImage = computed(() => (`http://127.0.0.1:5000/${processedImage.value}`))
+let pathProcessedImage = computed(() => (`http://services-jasik.alwaysdata.net:8400/${processedImage.value}`))
 
 function setUserImage(e) {
     const file = e.target.files[0]
@@ -191,7 +191,7 @@ async function submitForm() {
 
     let res = null;
     try {
-        res = await fetch('http://127.0.0.1:5000/user', {
+        res = await fetch('https://rakhmat.ninja/user', {
             method: "post",
             body: formData,
         });
