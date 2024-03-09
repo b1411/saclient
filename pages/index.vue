@@ -141,7 +141,7 @@ let campus = ref('')
 let rembg = ref(false);
 let processedImage = ref(null);
 
-let pathProcessedImage = computed(() => (`https://https://rakhmat.ninja/${processedImage.value}`))
+let pathProcessedImage = computed(() => (`https://rakhmat.ninja/${processedImage.value}`))
 
 function setUserImage(e) {
     const file = e.target.files[0]
